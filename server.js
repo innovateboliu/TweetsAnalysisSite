@@ -33,10 +33,11 @@ log('info', 'connected to redis server');
 const io = require('socket.io');
 
 if (!module.parent) {
-    server.listen(process.env.PORT || PORT, HOST);
+    server.listen(process.env.PORT , HOST);
     const socket  = io.listen(server);
 
     socket.on('connection', function(client) {
+        log('info', 'socket connected');
         const subscribe = redis.createClient(
           6379,
           "nodejitsudb4112456240.redis.irstack.com",
