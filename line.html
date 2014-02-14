@@ -1,0 +1,235 @@
+<!DOCTYPE html
+<meta charset="utf-8"> <style>
+
+svg {
+
+  font: 10px sans-serif;
+}
+
+.line {
+
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.axis path,
+.axis line {
+
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.legend.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+
+var n = 40,
+k = 1,//top K trend
+random = d3.random.normal(0, .2);
+
+var tmp = Array.apply(null, Array(k));
+var source = tmp.map(function(x, i){
+  var r = d3.range(n).map(random);
+  return r.map(function(y){
+    return y;
+  });
+}) ;
+
+var margin = {
+  top: 20, right: 20, bottom: 20, left: 40},
+  width = 960 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+  .domain([0, n - 1])
+  .range([0, width]);
+
+
+var duration = 750,
+        now = new Date(Date.now() - duration);
+
+var z  = d3.time.scale()
+        .domain([now - (n - 2) * duration, now - duration])
+        .range([0, width]);
+
+var y = d3.scale.linear()
+  .domain([-1, 1])
+  .range([height, 0]);
+
+var line = d3.svg.line()
+  .x(function(d, i) {
+    return x(i); })
+  .y(function(d, i) {
+    return y(d); })
+  .interpolate("basis")  ;
+
+
+var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      svg.append("defs").append("clipPath")
+      .attr("id", "clip")
+      .append("rect")
+      .attr("width", width)
+      .attr("height", height);
+
+//      svg.append("g")
+//      .attr("class", "x axis")
+//      .attr("transform", "translate(0," + y(0) + ")")
+//      .call(d3.svg.axis().scale(x).orient("bottom"));
+
+      svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.svg.axis().scale(y).orient("left"));
+
+var axis = svg.append("g")
+      .attr("class", "z axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(z.axis = d3.svg.axis().scale(z).orient("bottom"));
+
+var paths = Array.apply(null, Array(k));
+
+  for (var i = 0; i < k; i++){
+    paths[i] =  svg.append("g")
+      .attr("clip-path", "url(#clip)")
+      .append("path")
+      .datum(source[i])
+      .attr("class", "line")
+      .attr("data-legend", function(d) {
+        return i.toString();
+      })
+      .attr("d", line);
+  }
+
+legend = svg.append("g")
+      .attr("class","legend")
+      .attr("transform","translate(350,30)")
+      .attr("data-legend-pos", function(d){
+        return i;
+      })
+      .style("font-size","12px")
+      .call(d3.legend);
+
+
+
+      var shouldRestarts = Array.apply(null, Array(k));
+      var queues = Array.apply([], Array(k));
+      
+      for (var i = 0; i < k; i++){
+        shouldRestarts[i] = true;
+        queues[i] = [];
+      }
+
+      start();
+
+      function addMessage(data) {
+          $('#online').html(data);
+      }
+
+      function setStatus(msg) {
+          console.log('Connection Status : ' + msg);
+      }
+
+
+      function feedData(index) {
+        // update the domains
+         now = new Date();
+         z.domain([now - (n - 2) * duration, now - duration]);
+
+         var isNewRound = true;
+
+        var tmp = queues[index][0];
+        if (tmp.length < 2) {
+          shouldRestarts[index] = true;
+          return;
+        }
+        var val = queues[index].shift();
+        // push a new source point onto the back
+          source[index].push(parseFloat(val[0]) + 0.3*(index-1));
+
+        axis.transition()
+        .duration(val[1])
+        .ease("linear")
+        .call(z.axis);
+
+        // redraw the line, and slide it to the left
+
+          var p = paths[index];
+          p.attr("d", line)
+          .attr("transform", null)
+          .transition()
+          .duration(val[1])
+          .ease("linear")
+          .attr("transform", "translate(" + x(-1) + ",0)")
+          .each("end", function(){
+            feedData(index);
+          });
+
+        // pop the old source point off the front
+        source[index].shift();
+
+      }
+
+
+      function start(){
+
+        var curTime = Date.now();
+        var preTime = Date.now();
+
+        var socket = io.connect('http://localhost:3000/');
+
+        socket.on('connect', function(data){
+          setStatus('connected');
+          socket.emit('subscribe', {channel:'realtime'});
+        });
+
+        socket.on('reconnecting', function(data){
+          setStatus('reconnecting');
+        });
+
+        socket.on('message', function (data) {
+          console.log('received a message: ', data);
+          addMessage(data);
+
+          preTime = curTime;
+          curTime = Date.now();
+          for (var idx = 0; idx < k; idx++){
+            if (queues[idx].length > 0) {
+              queues[idx][queues[idx].length - 1].push(curTime - preTime); 
+            }
+            queues[idx].push([data]);
+
+            if (queues[idx].length > 1){
+              if (shouldRestarts[idx]) {
+                shouldRestarts[idx] = false;
+                feedData(idx);
+              }
+            } 
+          }
+        });
+
+      }
+      </script>
+
+    <table>
+      <tr style="width:100%; height: 200px;"> 
+        <td align="center" style="width: 30%; height: 100%; border: 1px solid #000;" >
+            <p id="online" style="font-size: 100px;">0</p>
+        </td>
+     </tr>
+  </table>
+  </body>
+  </html>
