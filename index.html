@@ -31,7 +31,7 @@ $(document).ready(function () {
         <div class="column_middle">
           <div class="column_middle_grid1">
             <div class="weather">
-              <h3> Twitter trend about Big Data in the past 10 minutes</h3>
+              <h3> Twitter trend (# mention times) about Big Data in the past 10 minutes</h3>
               <div class="temp_list">
                 <ul id="rankingList">
                 </ul>
@@ -116,7 +116,7 @@ $(document).ready(function () {
       var hashTag = e['id'];
       var cnt = e['cnt'];
       var href = e['href'];
-      var newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits"> </label>mentions count <label class="digits">%s</label></a></li>', href, hashTag, cnt);
+      var newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
 
       newRankingList.push(newLi);
       rankingList.append(newLi);
