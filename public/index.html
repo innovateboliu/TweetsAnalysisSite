@@ -133,7 +133,7 @@ $(document).ready(function () {
     var rankingList = $('#rankingList');
     //rankingList.empty();
     rankingList.children().fadeOut(500).promise().then(function() {
-        
+        $('li', rankingList).empty();
     });
     rankingList.empty();
 
