@@ -1,4 +1,4 @@
-<!doctype html
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -95,6 +95,7 @@ $(document).ready(function () {
   }
 
   function start(){
+
     var curTime = Date.now();
     var preTime = Date.now();
 
@@ -143,16 +144,6 @@ $(document).ready(function () {
     });
 
     rankingList.empty();
-
-    // $('ul:not(:first)').each(function(ulIndex) {
-    //     $(this).find('li').each(function(index) {
-    //         if(master[index] != $(this).text()) {
-    //             $(this).addClass('mismatch');        
-    //         }  
-    //     });
-    // });​
-
-
     
     var newRankingList = [];
     var rankings = JSON.parse(data);
@@ -162,8 +153,13 @@ $(document).ready(function () {
       var href = e['href'];
       var newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
 
-      if (master[idx] != newLi){
-        newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt);
+      var result = master[idx].split(/[#\s]+/);
+      var oldHashtag = result[1];
+      var oldCount = result[2];
+      if (oldHashtag != hashTag){
+        newLi = sprintf('<li><a href="%s"><span class="day_name changed">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt);
+      } else if (oldCount != cnt) {
+        newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt); 
       }
       newRankingList.push(newLi);
       rankingList.append(newLi);
