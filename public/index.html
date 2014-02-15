@@ -133,8 +133,9 @@ $(document).ready(function () {
     var rankingList = $('#rankingList');
     //rankingList.empty();
     rankingList.children().fadeOut(500).promise().then(function() {
-        rankingList.empty();
+        
     });
+    rankingList.empty();
 
     var newRankingList = [];
     var rankings = JSON.parse(data);
