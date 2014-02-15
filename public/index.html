@@ -131,7 +131,11 @@ $(document).ready(function () {
 
   function buildNewRankingList(data){
     var rankingList = $('#rankingList');
-    rankingList.empty();
+    //rankingList.empty();
+    rankingList.children().fadeOut(500).promise().then(function() {
+        rankingList.empty();
+    });
+
     var newRankingList = [];
     var rankings = JSON.parse(data);
     rankings.forEach(function(e, idx, arr){
