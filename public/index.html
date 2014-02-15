@@ -131,7 +131,7 @@ $(document).ready(function () {
 
   function buildNewRankingList(data){
     var rankingList = $('#rankingList');
-    rankingList.empty();
+    
 
 
     //
@@ -141,6 +141,8 @@ $(document).ready(function () {
     rankingList.find('li').each(function(index,value) {
         master.push($(this).text());
     });
+
+    rankingList.empty();
 
     // $('ul:not(:first)').each(function(ulIndex) {
     //     $(this).find('li').each(function(index) {
