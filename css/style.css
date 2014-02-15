@@ -613,7 +613,6 @@ fieldset#body {
 .weather h3,.tweets h3{
 	color: #FFF;
 	font-size: 1.2em;
-	text-transform: uppercase;
 	padding:15px 0;
 	text-align: center;
 	background:#cc324b;
