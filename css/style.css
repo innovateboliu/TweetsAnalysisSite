@@ -37,6 +37,10 @@ body{
 	background:#1f253d;
 	margin:0px 0;
 }
+
+.changed {
+	color:red;
+}
 .wrap{
 	width:80%;
 	margin:0 auto;
