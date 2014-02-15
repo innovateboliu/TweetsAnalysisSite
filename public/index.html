@@ -161,7 +161,7 @@ $(document).ready(function () {
       var newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
 
       if (master[idx] != newLi){
-        newLi = sprintf('<li class="changed"><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
+        newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt);
       }
       newRankingList.push(newLi);
       rankingList.append(newLi);

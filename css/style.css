@@ -38,7 +38,7 @@ body{
 	margin:0px 0;
 }
 
-li.changed a label{
+.changed {
 	color:red;
 }
 .wrap{
