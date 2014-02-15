@@ -116,7 +116,8 @@ $(document).ready(function () {
       var hashTag = e['id'];
       var cnt = e['cnt'];
       var href = e['href'];
-      var newLi = sprintf('<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="%s">#%s, mentions count : %s</li>', href, hashTag, cnt);
+      var newLi = sprintf('<li<a href="%s"><span class="day_name">#%s</span> mentions count : %s</a></li>', href, hashTag, cnt);
+
       newRankingList.push(newLi);
       rankingList.append(newLi);
     })
