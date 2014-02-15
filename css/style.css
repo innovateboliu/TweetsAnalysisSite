@@ -38,9 +38,6 @@ body{
 	margin:0px 0;
 }
 
-.changed {
-	color:red;
-}
 .wrap{
 	width:80%;
 	margin:0 auto;
@@ -692,6 +689,10 @@ fieldset#body {
 	font-size: 1em;
 	float: right;
 	letter-spacing:1px;
+}
+
+.temp_list li a label.changed{
+	color: red;
 }
 .temp_list li a label em{
 	font-size:0.5em;
