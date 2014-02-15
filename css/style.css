@@ -689,6 +689,7 @@ fieldset#body {
 	font-size: 1em;
 	float: right;
 	letter-spacing:1px;
+	font-weight:bold;
 }
 
 .temp_list li a label.changed{
