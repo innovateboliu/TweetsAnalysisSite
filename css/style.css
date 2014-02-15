@@ -692,15 +692,15 @@ fieldset#body {
 }
 
 .temp_list li a label.changed{
-	color: green;
+	color: #cc324b;
 }
 
 .temp_list li a label.goup{
-	color: red;
+	color: yellow;
 }
 
 .temp_list li a span.goup{
-	color: red;
+	color: yellow;
 }
 
 .temp_list li a label em{
