@@ -22,27 +22,56 @@ var server = http.createServer(app);
 
 
 const redis = require('redis');
+
+// Nodejitsu redis server
+// const client = redis.createClient(
+//   6379,
+//   "nodejitsudb4112456240.redis.irstack.com",
+//   {
+//     auth_pass:"nodejitsudb4112456240.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4"
+//   });
+// log('info', 'connected to redis server');
+
+// Heroku redis server
 const client = redis.createClient(
-  6379,
-  "nodejitsudb4112456240.redis.irstack.com",
+  9601,
+  "pearlfish.redistogo.com",
   {
-    auth_pass:"nodejitsudb4112456240.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4"
+    auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
   });
 log('info', 'connected to redis server');
+
+
 
 const io = require('socket.io');
 
 if (!module.parent) {
+    // local test
+    // server.listen(PORT, HOST);
+
+    // Heroku
     server.listen(process.env.PORT || PORT);
+
     const socket  = io.listen(server);
 
     socket.on('connection', function(client) {
         log('info', 'socket connected');
+
+        //Nodejitsu redis server
+        // const subscribe = redis.createClient(
+        //   6379,
+        //   "nodejitsudb4112456240.redis.irstack.com",
+        //   {
+        //     auth_pass:"nodejitsudb4112456240.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4"
+        //   });
+        // subscribe.subscribe('twitter_trend');
+
+        //Heroku redis server
         const subscribe = redis.createClient(
-          6379,
-          "nodejitsudb4112456240.redis.irstack.com",
+          9601,
+          "pearlfish.redistogo.com",
           {
-            auth_pass:"nodejitsudb4112456240.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4"
+            auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
           });
         subscribe.subscribe('twitter_trend');
 
