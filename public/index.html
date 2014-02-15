@@ -23,7 +23,7 @@ $(document).ready(function () {
         <div class="column_left">            
           <div class="column_left_grid1">
             <div class="weather">
-              <h3> Big Data buzz in the past 10 minutes</h3>
+              <h3> Top 20 buzz words in the past 10 minutes</h3>
               <div class="temp_list">
                 <ul id="rankingList">
                 </ul>
@@ -35,7 +35,7 @@ $(document).ready(function () {
         <div class="column_right">
           <div class="column_right_grid1">
             <div class="weather">
-              <h3> Big Data Influentials in January 2014</h3>
+              <h3> Top 20 Big Data Influentials in Jan 2014</h3>
               <div class="temp_list">
                 <ul id="influentialList">
                   <li><a href="https://twitter.com/search?q=%40DouglasBurson&src=typd"><span class="day_name">@DouglasBurson</span> <label class="digits">1164836</label></a></li>
@@ -131,12 +131,8 @@ $(document).ready(function () {
 
   function buildNewRankingList(data){
     var rankingList = $('#rankingList');
-    //rankingList.empty();
-    rankingList.children().fadeOut(500).promise().then(function() {
-        $('li', rankingList).empty();
-    });
     rankingList.empty();
-
+    
     var newRankingList = [];
     var rankings = JSON.parse(data);
     rankings.forEach(function(e, idx, arr){
