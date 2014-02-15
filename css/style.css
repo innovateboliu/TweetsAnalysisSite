@@ -692,11 +692,11 @@ fieldset#body {
 }
 
 .temp_list li a label.changed{
-	color: green;
+	color: red;
 }
 
 .temp_list li a span.changed{
-	color: red;
+	color: green;
 }
 
 .temp_list li a label em{
