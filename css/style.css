@@ -695,7 +695,11 @@ fieldset#body {
 	color: red;
 }
 
-.temp_list li a span.changed{
+.temp_list li a label.goup{
+	color: red;
+}
+
+.temp_list li a span.goup{
 	color: green;
 }
 

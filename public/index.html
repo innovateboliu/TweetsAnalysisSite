@@ -158,7 +158,7 @@ $(document).ready(function () {
         var oldHashtag = result[1];
         var oldCount = result[2];
         if (oldHashtag != hashTag){
-          newLi = sprintf('<li><a href="%s"><span class="day_name changed">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt);
+          newLi = sprintf('<li><a href="%s"><span class="day_name goup">#%s</span> <label class="digits goup">%s</label></a></li>', href, hashTag, cnt);
         } else if (oldCount != cnt) {
           newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits changed">%s</label></a></li>', href, hashTag, cnt); 
         }
