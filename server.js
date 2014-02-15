@@ -13,7 +13,10 @@ var express = require('express'),
     fs = require("fs");
 
 var app = express();
-app.use('/', express.static(__dirname + '/'));
+app.use('/', express.static(__dirname + '/public'));
+app.use('/js',express.static(__dirname + '/js'));
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/fonts', express.static(__dirname + '/fonts'));
 
 var server = http.createServer(app);
 
