@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>jQuery UI Sortable - Default functionality</title>
+<title>Bo's Twitter statistics</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
 <link rel="stylesheet" href="jquery-ui.css">
 <script src="jquery-1.9.1.js"></script>
 <script src="jquery-ui.js"></script>
@@ -32,16 +34,40 @@ $(document).ready(function () {
 </script>
   <body>
 
+    <div class="main">  
+      <div class="wrap">       
+        <div class="column_left">            
+          <div class="column_middle_grid1">
+            <div class="weather">
+                  
+            </div>
+          </div> 
+        </div> 
+        
+        <div class="column_middle">
+          <div class="column_middle_grid1">
+            <div class="weather">
+              <h3> Twitter trend about Big Data in the past 10 minutes</h3>
+              <div class="temp_list">
+                <ul id="rankingList">
+                </ul>
+              </div>
+            </div>
+          </div>                   
+           
+        </div>
+          
+        <div class="column_right">
+          <div class="weather">
+                  
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>   
 
-  <div class="ui-layout-center" id="arena">
-      Twitter trend about Big Data in the past 20 minutes
-      <ul id="rankingList">
-      </ul>
-  </div>
-  <div class="ui-layout-north">Twitter Statistics</div>
-  <div class="ui-layout-south"></div>
-  <div class="ui-layout-east"></div>
-  <div class="ui-layout-west"></div>
+      
+  
   </body>
   <script>
   start();

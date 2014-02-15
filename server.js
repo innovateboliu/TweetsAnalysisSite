@@ -33,7 +33,7 @@ log('info', 'connected to redis server');
 const io = require('socket.io');
 
 if (!module.parent) {
-    server.listen(process.env.PORT);
+    server.listen(process.env.PORT || PORT);
     const socket  = io.listen(server);
 
     socket.on('connection', function(client) {
