@@ -132,6 +132,25 @@ $(document).ready(function () {
   function buildNewRankingList(data){
     var rankingList = $('#rankingList');
     rankingList.empty();
+
+
+    //
+    var master = [];
+
+    // Identify the master values.
+    rankingList.first().find('li').each(function(index,value) {
+        master.push($(this).text());
+    });
+
+    // $('ul:not(:first)').each(function(ulIndex) {
+    //     $(this).find('li').each(function(index) {
+    //         if(master[index] != $(this).text()) {
+    //             $(this).addClass('mismatch');        
+    //         }  
+    //     });
+    // });​
+
+
     
     var newRankingList = [];
     var rankings = JSON.parse(data);
@@ -141,6 +160,9 @@ $(document).ready(function () {
       var href = e['href'];
       var newLi = sprintf('<li><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
 
+      if (master[idx] != newLi){
+        newLi = sprintf('<li class="changed"><a href="%s"><span class="day_name">#%s</span> <label class="digits">%s</label></a></li>', href, hashTag, cnt);
+      }
       newRankingList.push(newLi);
       rankingList.append(newLi);
     })
