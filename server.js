@@ -35,13 +35,23 @@ const redis = require('redis');
 //   });
 // log('info', 'connected to redis server');
 
-// Heroku redis server
+// Heroku redis to go server
+// const client = redis.createClient(
+//   9601,
+//   "pearlfish.redistogo.com",
+//   {
+//     auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
+//   });
+// log('info', 'connected to redis server');
+
+// heroku redis cloud server
 const client = redis.createClient(
-  9601,
-  "pearlfish.redistogo.com",
+  18039,
+  "pub-redis-18039.us-east-1-4.2.ec2.garantiadata.com",
   {
-    auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
+    auth_pass:"oB7WsFKMNO2MNfzr"
   });
+
 log('info', 'connected to redis server');
 
 
@@ -70,13 +80,25 @@ if (!module.parent) {
         // subscribe.subscribe('twitter_trend');
 
         //Heroku redis server
+        // const subscribe = redis.createClient(
+        //   9601,
+        //   "pearlfish.redistogo.com",
+        //   {
+        //     auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
+        //   });
+        
+
+        // heroku redis cloud server
         const subscribe = redis.createClient(
-          9601,
-          "pearlfish.redistogo.com",
+          18039,
+          "pub-redis-18039.us-east-1-4.2.ec2.garantiadata.com",
           {
-            auth_pass:"eade05d17a0cd9d29fa5933894412ea7"
+            auth_pass:"oB7WsFKMNO2MNfzr"
           });
+
         subscribe.subscribe('twitter_trend');
+
+        log('info', 'connected to redis server');
 
         subscribe.on("message", function(channel, message) {
             client.send(message);
