@@ -138,7 +138,7 @@ $(document).ready(function () {
     var master = [];
 
     // Identify the master values.
-    rankingList.first().find('li').each(function(index,value) {
+    rankingList.find('li').each(function(index,value) {
         master.push($(this).text());
     });
 
