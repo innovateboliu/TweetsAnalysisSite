@@ -102,7 +102,7 @@ if (!module.parent) {
 
         subscribe.on("message", function(channel, message) {
             client.send(message);
-            log('msg', "received from channel #" + channel + " : " + message);
+            // log('msg', "received from channel #" + channel + " : " + message);
         });
 
         client.on('message', function(msg) {
