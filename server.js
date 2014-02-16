@@ -106,7 +106,7 @@ if (!module.parent) {
         });
 
         client.on('message', function(msg) {
-            log('debug', msg);
+            // log('debug', msg);
         });
 
         client.on('disconnect', function() {
