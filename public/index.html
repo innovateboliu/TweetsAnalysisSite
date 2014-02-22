@@ -38,13 +38,15 @@ $(document).ready(function () {
         <div class="column_right">
           <div class="column_right_grid1">
             <div class="weather">
-              <h3  id="flip"> Top 20 Big Data Influentials in Jan 2014</h3>
               <div id="card">
+              
+              
               <div class="temp_list_back">
-
+                <h3  id="flip2"> Top 20 Big Data Influentials in Jan 2014</h3>
   
               </div>
               <div class="temp_list">
+                <h3  id="flip1"> Top 20 Big Data Influentials in Jan 2014</h3>
                 <ul id="influentialList">
                   <li><a href="https://twitter.com/search?q=%40wtrsld&src=typd"><span class="day_name">@wtrsld</span> <label class="digits">2915</label></a></li>
                   <li><a href="https://twitter.com/search?q=%40DouglasBurson&src=typd"><span class="day_name">@DouglasBurson</span> <label class="digits">1648</label></a></li>
@@ -84,14 +86,25 @@ $(document).ready(function () {
   <a href="https://github.com/BigDataAnalysis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
   <script>
 
-  $('#flip').click(function (e) {
+  $('#flip1').click(function (e) {
     var $card = $('#card');
     if ($card.hasClass("flipped")) {
         $card.removeClass('flipped');
-        $(this).removeClass('flipped');
+        // $(this).removeClass('flipped');
     } else {
         $card.addClass('flipped');
-         $(this).addClass('flipped');
+         // $(this).addClass('flipped');
+    }
+  });
+
+  $('#flip2').click(function (e) {
+    var $card = $('#card');
+    if ($card.hasClass("flipped")) {
+        $card.removeClass('flipped');
+        // $(this).removeClass('flipped');
+    } else {
+        $card.addClass('flipped');
+         // $(this).addClass('flipped');
     }
   });
 

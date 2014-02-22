@@ -691,7 +691,7 @@ fieldset#body {
   stroke-opacity: .6;
 }
 
-.weather h3.flipped{
+#flip2{
 	background:rgba(255,0,0,0);	
 }
 
