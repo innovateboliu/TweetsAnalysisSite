@@ -88,8 +88,10 @@ $(document).ready(function () {
     var $card = $('#card');
     if ($card.hasClass("flipped")) {
         $card.removeClass('flipped');
+        $(this).removeClass('flipped');
     } else {
         $card.addClass('flipped');
+         $(this).addClass('flipped');
     }
   });
 

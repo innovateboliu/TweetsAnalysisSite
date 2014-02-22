@@ -691,6 +691,10 @@ fieldset#body {
   stroke-opacity: .6;
 }
 
+.weather h3.flipped{
+	background:rgba(255,0,0,0);	
+}
+
 #card {
 	transition: 0.5s;
     -moz-transition: 0.5s;
