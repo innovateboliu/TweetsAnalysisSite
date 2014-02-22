@@ -653,13 +653,62 @@ fieldset#body {
 	font-size:0.5em;
 	vertical-align:top;
 }
-.temp_list{
+.temp_list,.temp_list_back{
+	-webkit-backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 1s ease-in;
+
 	background: #394264;
 	border-radius: 0px 0px 5px 5px;
 	-webkit-border-radius: 0px 0px 5px 5px;
 	-moz-border-radius: 0px 0px 5px 5px;
 	-o-border-radius: 0px 0px 5px 5px;
 }
+
+.temp_list_back {
+	background: rgba(255,0,0,0);
+    transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    height:500px;
+	display:none;
+} 
+
+.temp_list_back svg{
+	margin-left:auto;
+	margin-right:auto;
+    width:100%;
+    height:500px;
+    display:block;
+} 
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+#card {
+	transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+#card.flipped {
+	transform: rotatey(-180deg);
+    -moz-transform: rotatey(-180deg);
+    -webkit-transform: rotatey(-180deg);
+}
+#card.flipped .temp_list_back{
+	display:block;
+}
+
+#card.flipped .temp_list{
+	display:none;
+}
+
 .temp_list li a{
 	display:block;
 	color:#9099B7;
