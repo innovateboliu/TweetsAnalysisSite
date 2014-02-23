@@ -654,8 +654,8 @@ fieldset#body {
 	vertical-align:top;
 }
 .temp_list,.temp_list_back{
-	-webkit-backface-visibility: hidden;
-    -webkit-transition: -webkit-transform 1s ease-in;
+	/*-webkit-backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 1s ease-in;*/
 
 	background: #394264;
 	border-radius: 0px 0px 5px 5px;
