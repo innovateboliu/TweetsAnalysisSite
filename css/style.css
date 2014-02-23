@@ -682,7 +682,7 @@ fieldset#body {
 } 
 
 .node {
-  /*stroke: #fff;*/
+  stroke: #fff;
   stroke-width: 1.5px;
 }
 
@@ -692,7 +692,7 @@ fieldset#body {
 }
 
 .link {
-  /*stroke: #999;*/
+  stroke: #999;
   stroke-opacity: .6;
 }
 
