@@ -686,6 +686,11 @@ fieldset#body {
   stroke-width: 1.5px;
 }
 
+.node:hover {
+	stroke-width: 5.5px;
+	cursor: pointer;
+}
+
 .link {
   stroke: #999;
   stroke-opacity: .6;
