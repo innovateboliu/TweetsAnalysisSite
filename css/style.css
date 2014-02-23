@@ -691,8 +691,33 @@ fieldset#body {
   stroke-opacity: .6;
 }
 
-#flip2{
+#flip1, #flip2 {
+	position:relative;
+}
+#flip2 h3{
 	background:rgba(255,0,0,0);	
+}
+
+img.nextimage {
+  position:absolute;
+  top:30%;
+    zoom:50%;
+  opacity:0.3;
+  border:none;
+  box-shadow:none;
+  right:0;
+}
+img.previousimage {
+  position:absolute;
+  top:30%;
+  zoom:50%;
+  opacity:0.3;
+  border:none;
+  box-shadow:none;
+  left:0;
+}
+img.previousimage:hover,img.nextimage:hover{
+	opacity:0.9;
 }
 
 #card {
