@@ -44,7 +44,7 @@ $(document).ready(function () {
               <div class="temp_list_back">
                 <div id="flip2">
                 <img src="http://wp-types.com/wp-content/uploads/2012/07/previous.png" class="previousimage"/>
-                <h3> Big Data Influentials Network</h3>
+                <h3> Top 20 Big Data Influentials Network</h3>
                 <img src="http://wp-types.com/wp-content/uploads/2012/07/next.png" class="nextimage"/>
 
                 </div>
@@ -113,6 +113,7 @@ $(document).ready(function () {
         // $(this).removeClass('flipped');
     } else {
         $card.addClass('flipped');
+        
          // $(this).addClass('flipped');
     }
   });
@@ -125,16 +126,15 @@ var height =  $(".temp_list_back").height();
 
 var force = d3.layout.force()
     .charge(-120)
-    .linkDistance(30)
+    .linkDistance(50)
     .size([width, height]);
 
 
 var svg = d3.select(".temp_list_back").append("svg:svg")
-    .attr("viewBox", "0 0 " + width*0.9 + " " + height);
+    .attr("viewBox", "0 0 " + width + " " + height);
 
 d3.json("graph.json", function(error, graph) {
-  force
-      .nodes(graph.nodes)
+  force.nodes(graph.nodes)
       .links(graph.links)
       .start();
 
@@ -148,12 +148,14 @@ d3.json("graph.json", function(error, graph) {
       .data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
+      // .attr("r", 5)
+      .attr("r", function(d) { return d.value * 3;})
+      .style("fill", function(d) { return color(d.value); })
       .call(force.drag);
 
   node.append("title")
       .text(function(d) { return d.name; });
+
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
